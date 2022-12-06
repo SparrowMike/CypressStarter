@@ -1,1 +1,5 @@
-THIS IS A TEST
+# Cypress Starter
+
+## Get Started
+- npm install
+- npm run cypress
