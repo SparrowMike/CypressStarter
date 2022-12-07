@@ -1,17 +1,25 @@
-
-const userName = "rahul1988gupta88@gmail.com"
-const password = "Welcome1234!"
-const landingTitle = 'SG Trading Room'
+import { LoginPage } from "../PageObjects/LoginPage"
 
 describe('landing page suite', () => {
-  it('verify valid user login and landing page title', () => {
-    cy.visit('/app/login')
-    cy.title().should('eq','Login')
-    cy.wait(20000)
-    cy.get('#username').type(userName)
-    cy.get('#password').type(password)
-    cy.get('.submit').contains('Login').click()
-    cy.title().should('eq', landingTitle)
-
+  // using POM
+  it('LoginTest',()=> {
+    cy.fixture('const').then((data) => {
+    const login = new LoginPage();
+    login.navigate(data.icGenesivUrl);
+    login.setUserName(data.username);
+    login.setPassword(data.password);
+    login.clickLogin();
+    })
   })
+
+  it('Verify CNAME Disclaimer', () => {
+    const ln = new LoginPage();
+    ln.verifyServerAndDisclaimersText();
+  })
+
+  it('Verify CNAME Disclaimer GDPR', () => {
+    const ln = new LoginPage();
+    ln.verifyCheckBoxChecked();
+  })
+
 })
