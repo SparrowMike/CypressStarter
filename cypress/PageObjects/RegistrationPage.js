@@ -7,11 +7,14 @@ export class RegistrationPage {
     txtConfirmPassword = "#confirmpassword";
     btnregister = ".submit";
     divError = ".errored";
+    passwordPopupTitle =".padleft10";
 
     // String Constant
     Register = "REGISTER";
     ErrrorEmailMsg = "This email address is already taken.";
     ErrrorUserNameMsg = "This username is already taken.";
+    PasswordPopupTitle = "Password must include:";
+    RegisterBtnClassAttrValue = "ui center submit button ng-binding";
 
 
     navigate(registerUrl) {
@@ -68,6 +71,10 @@ export class RegistrationPage {
         cy.get(this.divError).should('contain', this.ErrrorUserNameMsg)
     }
 
+    VerifyRegisterButtonIsDisabledAndPopupField() {
+        cy.get(this.passwordPopupTitle).should('contain',this.PasswordPopupTitle)
+        cy.get(this.btnregister).should('have.attr', 'class',this.RegisterBtnClassAttrValue)
+    }
 }
 
 export default RegistrationPage;

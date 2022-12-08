@@ -31,4 +31,17 @@ describe('registeration page suite', () => {
       register.VerifyDuplicateUserName();
     })
   })
+
+  it.only('Register Password Insecure', () => {
+    cy.fixture('const').then((data) => {
+      const register = new RegistrationPage();
+      register.navigate(data.genesivRegisterUrl);
+      register.setFirstName(data.firstName);
+      register.setLastName(data.lastName);
+      register.setEmailId(data.passWordInsecureEmailId);
+      register.setRegisterUsername(data.inSecureUserName);
+      register.setPassword(data.inSecurePassword);
+      register.VerifyRegisterButtonIsDisabledAndPopupField();
+    })
+  })
 })
