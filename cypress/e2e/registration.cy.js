@@ -32,7 +32,7 @@ describe('registeration page suite', () => {
     })
   })
 
-  it.only('Register Password Insecure', () => {
+  it('Register Password Insecure', () => {
     cy.fixture('const').then((data) => {
       const register = new RegistrationPage();
       register.navigate(data.genesivRegisterUrl);
