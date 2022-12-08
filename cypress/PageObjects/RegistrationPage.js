@@ -1,11 +1,10 @@
-export class RegistrationPage
-{
+export class RegistrationPage {
     txtFirstName = "#first_name";
     txtLastName = "#last_name";
     txtEmail = "#email";
     txtUserName = "#user_name";
     txtPassword = "#newpassword";
-    txtConfirmPassword ="#confirmpassword";
+    txtConfirmPassword = "#confirmpassword";
     btnregister = ".submit";
     divError = ".errored";
 
@@ -15,66 +14,60 @@ export class RegistrationPage
     ErrrorUserNameMsg = "This username is already taken.";
 
 
-    navigate(registerUrl){
+    navigate(registerUrl) {
         cy.visit(registerUrl)
     }
 
-    setFirstName(fName)
-    {
+    setFirstName(fName) {
         const field = cy.get(this.txtFirstName).clear()
         field.should('be.visible').type(fName)
         return this
     }
 
-    setLastName(lastName)
-    {
+    setLastName(lastName) {
         const field = cy.get(this.txtLastName).clear()
         field.should('be.visible').type(lastName)
         return this
     }
 
-    setEmailId(emailID)
-    {
+    setEmailId(emailID) {
         const field = cy.get(this.txtEmail).clear()
         field.should('be.visible').type(emailID)
         return this
     }
 
-    setRegisterUsername(userName)
-    {
+    setRegisterUsername(userName) {
         const field = cy.get(this.txtUserName).clear()
         field.should('be.visible').type(userName)
         return this
     }
 
-    setPassword(password)
-    {
+    setPassword(password) {
         const field = cy.get(this.txtPassword).clear()
         field.should('be.visible').type(password)
         return this
     }
 
-    setConfirmPassword(confirmPassword)
-    {
+    setConfirmPassword(confirmPassword) {
         const field = cy.get(this.txtConfirmPassword).clear()
         field.should('be.visible').type(confirmPassword)
         return this
     }
 
-    clickRegister(){
+    clickRegister() {
         const button = cy.get(this.btnregister)
         button.contains(this.Register)
         button.click()
     }
 
-    VerifyDuplicateEmailid(){
-        cy.get(this.divError).should('contain',this.ErrrorEmailMsg)
+    VerifyDuplicateEmailid() {
+        cy.get(this.divError).should('contain', this.ErrrorEmailMsg)
     }
 
-    VerifyDuplicateUserName(){
-        cy.get(this.divError).should('contain',this.ErrrorUserNameMsg)
+    VerifyDuplicateUserName() {
+        cy.get(this.divError).should('contain', this.ErrrorUserNameMsg)
     }
-    
+
 }
 
 export default RegistrationPage;

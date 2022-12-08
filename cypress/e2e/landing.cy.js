@@ -2,13 +2,13 @@ import { LoginPage } from "../PageObjects/LoginPage"
 
 describe('landing page suite', () => {
   // using POM
-  it('LoginTest',()=> {
+  it('LoginTest', () => {
     cy.fixture('const').then((data) => {
-    const login = new LoginPage();
-    login.navigate(data.icGenesivUrl);
-    login.setUserName(data.username);
-    login.setPassword(data.password);
-    login.clickLogin();
+      const login = new LoginPage();
+      login.navigate(data.icGenesivUrl);
+      login.setUserName(data.username);
+      login.setPassword(data.password);
+      login.clickLogin();
     })
   })
 
