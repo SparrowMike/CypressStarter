@@ -1,9 +1,9 @@
-const user = "cypresscnamelogin"
-const password = "Cypresscnamelogin1!"
+const user = "cypresstest2"
+const password = "Cypresstest2!"
 
-describe('Cname Login', () => {
+describe('Login Redirects Existing User', () => {
   beforeEach(() => {
-    cy.visit('https://ic.genesiv.com/app/login')
+    cy.visit('https://genesiv.com/app/login')
     cy.wait(2000)
     cy.on('uncaught:exception', (err, runnable) => {
     return false;    
@@ -44,8 +44,6 @@ describe('Cname Login', () => {
 
     cy.location('pathname', { timeout: 50000 }).should('not.include', '/login');
     cy.wait(2000)
-    cy.url().should('include', '/app/IC-VIP-Room/Welcome!') // => true
-    cy.url().should('eq', 'https://ic.genesiv.com/app/IC-VIP-Room/Welcome!') 
-    cy.get('.content:nth-child(2) > .white > .ng-binding').contains('Welcome to the IC Markets VIP Room!')
+    cy.get('.content:nth-child(2) > .white > .ng-binding').contains('Official Genesiv server!')
   })  
 })
