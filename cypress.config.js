@@ -5,6 +5,6 @@ module.exports = defineConfig({
     // baseUrl: 'http://localhost:1337',
     // baseUrl: 'https://tradingroom.sg',
     // baseUrl: 'https://genesiv.com',
-    // "defaultCommandTimeout": 3000 
+    // "defaultCommandTimeout": 25000 
   }
 })
