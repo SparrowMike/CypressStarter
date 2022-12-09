@@ -13,8 +13,14 @@ export class LoginPage {
 
     setUserName(userName) {
         const field = cy.get(this.txtUserName).clear()
-        field.should('be.visible').type(userName)
+        field.should('be.visible').clear().type(userName)
         return this
+    }
+
+    loginValid(username, password) {
+        this.setUserName(username);
+        this.setPassword(password);
+        this.clickLogin();
     }
 
     setPassword(password) {

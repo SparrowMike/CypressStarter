@@ -3,6 +3,7 @@
   "password": "Cypressdisclaimer1!",
   "genesivRegisterUrl": " https://genesiv.com/app/register",
   "icGenesivUrl": "https://ic.genesiv.com/app/login",
+  "icGenesivLoginUrl": "https://genesiv.com/app/login",
   "firstName": "cypress",
   "lastName": "test",
   "duplicateEmailId": "nuleduly@pulsakita.biz",
@@ -10,7 +11,9 @@
   "passWordInsecureEmailId": "zosyleho@ema-sofia.eu",
   "registerUserName": "usercypresstest",
   "inSecureUserName": "usercypresstest1",
+  "msgUserName": "usercypresstest",
   "registerPassword": "Cypresstest@1",
   "inSecurePassword": "cypress",
+  "msgPassword": "Test@123",
   "confirmPassword": "Cypresstest@1"
 }

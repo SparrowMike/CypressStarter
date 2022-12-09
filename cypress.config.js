@@ -17,16 +17,3 @@ module.exports = defineConfig({
     defaultCommandTimeout: 10000
   }
 })
-/*
-module.exports = defineConfig({
-  e2e: {
-    // baseUrl: 'http://localhost:1337',
-       baseUrl: 'https://tradingroom.sg',
-    // baseUrl: 'https://genesiv.com',
-    "execTimout": 60000,
-    "defaultCommandTimeout": 10000,
-    "pageLoadTimeout": 60000,
-    "requestTimeout": 10000,
-    "responseTimeout": 30000
-  }
-})*/
