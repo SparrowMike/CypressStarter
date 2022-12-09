@@ -1,15 +1,13 @@
-const user = "cypresstest2"
-const password = "Cypresstest2!"
+const user = "cypressdisclaimer"
+const password = "Cypressdisclaimer1!"
 
-describe('Login Redirects Existing User', () => {
+describe('CNAME Disclaimer', () => {
   beforeEach(() => {
-    cy.visit('https://genesiv.com/app/login')
-    cy.wait(200)
-    cy.on('uncaught:exception', (err, runnable) => {
+    cy.visit('https://ic.genesiv.com/app/login')    
+    cy.on('uncaught:exception', (_err, runnable) => {
     return false;    
     });
   })
-
 
   it('Greets with welcome', () => {
     cy.contains('h1', 'Welcome Back!')
@@ -29,7 +27,6 @@ describe('Login Redirects Existing User', () => {
   it('requires valid username and password', () => {
     cy.get('#username').type(user)
     cy.get('#password').type('invalidpassword{enter}')
-    cy.wait(200)
     cy.get('.field .message .content .header').should('contain', 'The username/email or password you have entered is incorrect. Please try again')
   }) 
 
@@ -41,9 +38,8 @@ describe('Login Redirects Existing User', () => {
     cy.on('url:changed', (newUrl) => {
      console.log('newUrl', newUrl)
   })
-    cy.wait(200)
-    cy.location('pathname', { timeout: 20000 }).should('not.include', '/login');
-    
-    cy.get('.content:nth-child(2) > .white > .ng-binding').contains('Official Genesiv server!')
+
+    cy.location('pathname', { timeout: 20000 }).should('not.include', '/login');    
+    cy.get('.field:nth-child(1) > label').contains('Server Rules and Disclaimers')
   })  
 })

@@ -4,7 +4,7 @@ const password = "Cypresstest1!"
 describe('/login', () => {
   beforeEach(() => {
     cy.visit('https://genesiv.com/app/login');
-    cy.wait(2000)
+    cy.wait(200)
     cy.on('uncaught:exception', (err, runnable) => {
      // if (expect(err.message).to.include("> Unexpected token '<'")) {
         return false;
@@ -32,7 +32,7 @@ describe('/login', () => {
   it('requires valid username and password', () => {
     cy.get('#username').type(user)
     cy.get('#password').type('invalidpassword{enter}')
-    cy.wait(2000)
+    cy.wait(200)
     cy.get('.field .message .content .header').should('contain', 'The username/email or password you have entered is incorrect. Please try again')
   }) 
 
@@ -48,9 +48,8 @@ describe('/login', () => {
     })
 
     cy.location('pathname', { timeout: 20000 })
-      .should('not.include', '/login');
+      .should('not.include', '/login')
       cy.get('.noChannels__header > .header').contains('What would you like to do today?')
   })
-
   
 })
