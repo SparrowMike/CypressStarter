@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "runtest": "npx cypress run --browser chrome --headed --config pageLoadTimeout=100000"
   },
   "keywords": [],
   "author": "",
