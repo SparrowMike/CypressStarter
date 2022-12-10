@@ -6,10 +6,16 @@ export class LoginPage {
     checkBoxFirstName = "//input[@id='First Name' and @type='checkbox']"
     checkBoxLastName = "//input[@id='Last Name' and @type='checkbox']"
     checkBoxEmail = "//input[@id='Email' and @type='checkbox']"
+    header ='.header'
+    divVipHeader = "//span[@class='ng-binding ng-scope']"
+
 
     // String Constant
     Login = "Login";
     ServerAndDisclaimer = "Server Rules and Disclaimers"
+    WhatWouldLileToDoToday = "'What would you like to do today?"
+    WelcomeToVipRoom = "Welcome to the IC Markets VIP Room!"
+    url = "https://ic.genesiv.com/app/IC-VIP-Room/Welcome!"
 
     setUserName(userName) {
         const field = cy.get(this.txtUserName).clear()
@@ -39,6 +45,16 @@ export class LoginPage {
     verifyServerAndDisclaimersText() {
         cy.get(this.clsPopUp).should('to.have', this.ServerAndDisclaimer)
     }
+
+    verifyHeaderText() {
+        cy.get(this.header).should('to.have', this.WhatWouldLileToDoToday)
+    }
+
+    verifyLandingUrlAndVipRoomText() {
+        cy.get('.content:nth-child(2) > .white > .ng-binding').contains(this.WelcomeToVipRoom);
+        cy.url().should('be.visible').should('eq',this.url);
+    }
+
 
     verifyCheckBoxChecked() {
         cy.xpath(this.checkBoxFirstName).wait(20000).should('be.disabled')

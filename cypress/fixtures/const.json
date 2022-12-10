@@ -11,9 +11,13 @@
   "passWordInsecureEmailId": "zosyleho@ema-sofia.eu",
   "registerUserName": "usercypresstest",
   "inSecureUserName": "usercypresstest1",
+  "cnameLoginUserName":"cypresscnamelogin",
   "msgUserName": "usercypresstest",
+  "loginFirstTimeUsername":"cypresstest1",
   "registerPassword": "Cypresstest@1",
   "inSecurePassword": "cypress",
   "msgPassword": "Test@123",
+  "loginFirstTimePassword": "Cypresstest1!",
+  "cnameLoginPassword":"Cypresscnamelogin1!",
   "confirmPassword": "Cypresstest@1"
 }
