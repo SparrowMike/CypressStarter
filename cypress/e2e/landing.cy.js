@@ -33,7 +33,7 @@ describe('landing page suite', () => {
     })
   })
 
-  it.only('CNAME Login', () => {
+  it('CNAME Login', () => {
     cy.fixture('const').then((data) => {
       const login = new LoginPage();
       login.navigate(data.icGenesivUrl);
