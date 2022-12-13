@@ -1,12 +1,9 @@
 export class MessagePage {
     msgDiv = '#messageDiv';
-    // sendTxtSpan = "//span[@key = '6391ab872876d33626b18c9a')]"
-    // sendTxtSpan ="//.*[@class ='message ng-scope no-border']";
-    // sendTxtSpan ='.ng-binding ng-scope';
     sendTxtSpan = "//div[starts-with(@id,'msg_')]//span[@class='white msg-body ui fluid image']";
 
     // String Constant
-    Path = 'https://genesiv.com/app/Testing-server/Basic';
+    Path = '/Testing-server/Basic';
     cyPressAutomationtxt = "this is cypress automation text";
 
 
