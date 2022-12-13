@@ -7,7 +7,7 @@ export class RegistrationPage {
     txtConfirmPassword = "#confirmpassword";
     btnregister = ".submit";
     divError = ".errored";
-    passwordPopupTitle =".padleft10";
+    passwordPopupTitle = ".padleft10";
 
     // String Constant
     Register = "REGISTER";
@@ -72,8 +72,8 @@ export class RegistrationPage {
     }
 
     VerifyRegisterButtonIsDisabledAndPopupField() {
-        cy.get(this.passwordPopupTitle).should('contain',this.PasswordPopupTitle)
-        cy.get(this.btnregister).should('have.attr', 'class',this.RegisterBtnClassAttrValue)
+        cy.get(this.passwordPopupTitle).should('contain', this.PasswordPopupTitle)
+        cy.get(this.btnregister).should('have.attr', 'class', this.RegisterBtnClassAttrValue)
     }
 }
 
