@@ -3,6 +3,7 @@ export class MessagePage {
     sendTxtSpan = "//div[starts-with(@id,'msg_')]//span[@class='white msg-body ui fluid image']";
     deleteToolTip = "//div[@data-tooltip = 'Delete']"
     replyToolTip = "//div[@data-tooltip = 'Reply']"
+    editToolTip =  "//div[@data-tooltip = 'Edit']"
     deleteButtom = "//button[@class='ui approve button delete-approve']"
     replyHeader ='.medium ng-binding'
 
@@ -10,10 +11,12 @@ export class MessagePage {
     Path = '/Testing-server/Basic';
     cyPressAutomationtxt = "this is cypress automation text";
     cyPressReplytxt = "this is cypress reply automation text";
+    cyPressEdittxt= "this is cypress edit automation text";
     
     now = Date.now(); // Unix timestamp in milliseconds
     replyTxt = this.cyPressReplytxt + this.now
     sendTxt = this.cyPressAutomationtxt + this.now
+    editTxt = this.cyPressAutomationtxt + this.now
 
 
     VerifyLandingUrl() {
@@ -32,6 +35,11 @@ export class MessagePage {
     sendReplyMessage(){
         console.log(this.now);
         cy.get(this.msgDiv).should('be.visible').clear().type(this.replyTxt + '{enter}');
+    }
+
+    sendEditMessage(){
+        console.log(this.now);
+        cy.get(this.msgDiv).clear().should('be.visible').clear().type(this.editTxt + '{enter}');
     }
 
     hoverSendMessageTxt() {
@@ -55,6 +63,13 @@ export class MessagePage {
         })
     }
 
+    hoverAndClickEditTooltip() {
+        cy.log(cy.xpath(this.editToolTip).its('length'))
+        cy.xpath(this.editToolTip).each(($el) => {
+            $el.click();
+        })
+    }
+
     clickDeletePopButton() {
         cy.xpath(this.deleteButtom).click();
     }
@@ -66,6 +81,11 @@ export class MessagePage {
     verifyReplyText(){
         cy.xpath(this.sendTxtSpan).should('contain', this.replyTxt);
     }
+
+    verifyEditText(){
+        cy.xpath(this.sendTxtSpan).should('contain', this.editTxt);
+    }
+
 }
 
 
