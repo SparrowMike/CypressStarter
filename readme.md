@@ -3,6 +3,7 @@
 ## Get Started
 - npm install
 - npm run cypress
+- npm i cypress-real-events
 
 ## POM Frameworks Guidlines
 
