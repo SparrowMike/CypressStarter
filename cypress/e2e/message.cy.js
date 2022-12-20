@@ -21,7 +21,7 @@ describe('message page suite', () => {
     cy.fixture('const').then((data) => {
       const login = new LoginPage();
       login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName,data.msgPassword);
+      login.loginValid(data.msgUserName, data.msgPassword);
       const msgObj = new MessagePage();
       msgObj.VerifyLandingUrl();
       msgObj.sendMessage();
@@ -36,7 +36,7 @@ describe('message page suite', () => {
     cy.fixture('const').then((data) => {
       const login = new LoginPage();
       login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName,data.msgPassword);
+      login.loginValid(data.msgUserName, data.msgPassword);
       const msgObj = new MessagePage();
       msgObj.VerifyLandingUrl();
       msgObj.sendMessage();
@@ -51,7 +51,7 @@ describe('message page suite', () => {
     cy.fixture('const').then((data) => {
       const login = new LoginPage();
       login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName,data.msgPassword);
+      login.loginValid(data.msgUserName, data.msgPassword);
       const msgObj = new MessagePage();
       msgObj.VerifyLandingUrl();
       msgObj.sendMessage();
@@ -66,7 +66,7 @@ describe('message page suite', () => {
     cy.fixture('const').then((data) => {
       const login = new LoginPage();
       login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName,data.msgPassword);
+      login.loginValid(data.msgUserName, data.msgPassword);
       const msgObj = new MessagePage();
       msgObj.VerifyLandingUrl();
       msgObj.sendMessage();

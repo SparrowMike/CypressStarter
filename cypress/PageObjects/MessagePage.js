@@ -3,10 +3,10 @@ export class MessagePage {
     sendTxtSpan = "//div[starts-with(@id,'msg_')]//span[@class='white msg-body ui fluid image']";
     deleteToolTip = "//div[@data-tooltip = 'Delete']"
     replyToolTip = "//div[@data-tooltip = 'Reply']"
-    editToolTip =  "//div[@data-tooltip = 'Edit']"
+    editToolTip = "//div[@data-tooltip = 'Edit']"
     reactToolTip = "//div[@data-tooltip = 'React to this message']"
     deleteButtom = "//button[@class='ui approve button delete-approve']"
-    replyHeader ='.medium ng-binding'
+    replyHeader = '.medium ng-binding'
     reactImage = "//img[@data-src='/img/emojis/1f600.png']"
     reactImageXpathSrc = "//img[@src='/img/emojis/1f600.png']"
 
@@ -14,9 +14,9 @@ export class MessagePage {
     Path = '/Testing-server/Basic';
     cyPressAutomationtxt = "this is cypress automation text";
     cyPressReplytxt = "this is cypress reply automation text";
-    cyPressEdittxt= "this is cypress edit automation text";
+    cyPressEdittxt = "this is cypress edit automation text";
     reactImageSrc = "/img/emojis/1f600.png";
-    
+
     now = Date.now(); // Unix timestamp in milliseconds
     replyTxt = this.cyPressReplytxt + this.now
     sendTxt = this.cyPressAutomationtxt + this.now
@@ -36,12 +36,12 @@ export class MessagePage {
         cy.xpath(this.sendTxtSpan).should('contain', this.cyPressAutomationtxt + this.now);
     }
 
-    sendReplyMessage(){
+    sendReplyMessage() {
         console.log(this.now);
         cy.get(this.msgDiv).should('be.visible').clear().type(this.replyTxt + '{enter}');
     }
 
-    sendEditMessage(){
+    sendEditMessage() {
         console.log(this.now);
         cy.get(this.msgDiv).clear().should('be.visible').clear().type(this.editTxt + '{enter}');
     }
@@ -85,7 +85,7 @@ export class MessagePage {
         cy.xpath(this.deleteButtom).click();
     }
 
-    selectEmojiFromtheContainer(){
+    selectEmojiFromtheContainer() {
         cy.xpath(this.reactImage).each(($el) => {
             $el.click();
         })
@@ -95,17 +95,17 @@ export class MessagePage {
         cy.xpath(this.sendTxtSpan).should('not.contain', this.cyPressAutomationtxt + this.now);
     }
 
-    verifyReplyText(){
+    verifyReplyText() {
         cy.xpath(this.sendTxtSpan).should('contain', this.replyTxt);
     }
 
-    verifyReactMessage(){
+    verifyReactMessage() {
         cy.xpath(this.sendTxtSpan).should('contain', this.cyPressAutomationtxt + this.now)
         cy.xpath(this.reactImageXpathSrc).invoke('attr', 'src').should('contain', this.reactImageSrc)
-                                  
+
     }
 
-    verifyEditText(){
+    verifyEditText() {
         cy.xpath(this.sendTxtSpan).should('contain', this.editTxt);
     }
 
