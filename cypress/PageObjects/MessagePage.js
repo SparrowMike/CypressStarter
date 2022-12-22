@@ -9,27 +9,44 @@ export class MessagePage {
     replyHeader = '.medium ng-binding'
     reactImage = "//img[@data-src='/img/emojis/1f600.png']"
     reactImageXpathSrc = "//img[@src='/img/emojis/1f600.png']"
+    youtubeLink = "//a[@href='http://www.youtube.com']"
+    headerYoutubeLink = "//h3[contains(text(),'YouTube')]"
+    description = '.description'
+    youtubeImage = "//img[@src='https://www.youtube.com/img/desktop/yt_1200.png']"
 
     // String Constant
     Path = '/Testing-server/Basic';
+    OpenChannelPath ='/Cypress-server/Open-channel';
     cyPressAutomationtxt = "this is cypress automation text";
     cyPressReplytxt = "this is cypress reply automation text";
     cyPressEdittxt = "this is cypress edit automation text";
     reactImageSrc = "/img/emojis/1f600.png";
+    descriptionText = "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube"
 
     now = Date.now(); // Unix timestamp in milliseconds
     replyTxt = this.cyPressReplytxt + this.now
     sendTxt = this.cyPressAutomationtxt + this.now
     editTxt = this.cyPressEdittxt + this.now
+    sendYoutubetext = "www.youtube.com";
 
 
     VerifyLandingUrl() {
         cy.url().should('include', this.Path);
     }
 
+    VerifyOpenChannelUrl() {
+        cy.url().should('include', this.OpenChannelPath);
+    }
+
+
     sendMessage() {
         console.log(this.now);
         cy.get(this.msgDiv).should('be.visible').clear().type(this.sendTxt + '{enter}');
+    }
+
+    sendYoutubeMessage() {
+        console.log(this.now);
+        cy.get(this.msgDiv).should('be.visible').clear().type(this.sendYoutubetext + '{enter}');
     }
 
     verifySendMessageTxt() {
@@ -52,6 +69,15 @@ export class MessagePage {
         cy.xpath("//span[contains(text()," + "'" + lastMessageString + "'" + ")]").realHover('mouse');
         cy.log(cy.xpath(this.sendTxtSpan).its('length'))
     }
+
+    hoverTubelinkAndClick() {
+        const lastMessageString = this.sendYoutubetext;
+        cy.log(lastMessageString);
+        cy.xpath(this.youtubeLink).last().realHover('mouse');
+        cy.xpath(this.youtubeLink).last().should('have.attr', 'target')
+        cy.xpath(this.youtubeLink).last().click();
+    }
+
 
     hoverAndClickDeleteTooltip() {
         cy.log(cy.xpath(this.deleteToolTip).its('length'))
@@ -94,6 +120,23 @@ export class MessagePage {
     verifyDeletedLastMessageNotvisible() {
         cy.xpath(this.sendTxtSpan).should('not.contain', this.cyPressAutomationtxt + this.now);
     }
+
+    verifyYoutubeText() {
+        cy.xpath(this.sendTxtSpan).should('contain', this.sendYoutubetext);
+    }
+
+    verifyNewtabTitle() {
+        cy.xpath(this.youtubeLink).last().should('have.attr','href').should('contain', "http://www.youtube.com")
+            
+    }
+
+    verifyYoutubeAtrributes() {
+        cy.xpath(this.headerYoutubeLink).last().should('exist');
+        cy.get(this.description).should('exist').should('contain', this.descriptionText);
+        cy.xpath(this.youtubeImage).should('exist');
+
+    }
+
 
     verifyReplyText() {
         cy.xpath(this.sendTxtSpan).should('contain', this.replyTxt);

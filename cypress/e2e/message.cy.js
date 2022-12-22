@@ -11,7 +11,7 @@ describe('message page suite', () => {
       login.navigate(data.icGenesivLoginUrl);
       login.loginValid(data.msgUserName, data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyLandingUrl();
+      msgObj.VerifyOpenChannelUrl();
       msgObj.sendMessage();
       msgObj.verifySendMessageTxt();
     })
@@ -21,9 +21,9 @@ describe('message page suite', () => {
     cy.fixture('const').then((data) => {
       const login = new LoginPage();
       login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName, data.msgPassword);
+      login.loginValid(data.msgUserName,data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyLandingUrl();
+      msgObj.VerifyOpenChannelUrl();
       msgObj.sendMessage();
       msgObj.hoverSendMessageTxt();
       msgObj.hoverAndClickDeleteTooltip();
@@ -36,9 +36,9 @@ describe('message page suite', () => {
     cy.fixture('const').then((data) => {
       const login = new LoginPage();
       login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName, data.msgPassword);
+      login.loginValid(data.msgUserName,data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyLandingUrl();
+      msgObj.VerifyOpenChannelUrl();
       msgObj.sendMessage();
       msgObj.hoverSendMessageTxt();
       msgObj.hoverAndClickReplyTooltip();
@@ -51,9 +51,9 @@ describe('message page suite', () => {
     cy.fixture('const').then((data) => {
       const login = new LoginPage();
       login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName, data.msgPassword);
+      login.loginValid(data.msgUserName,data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyLandingUrl();
+      msgObj.VerifyOpenChannelUrl();
       msgObj.sendMessage();
       msgObj.hoverSendMessageTxt();
       msgObj.hoverAndClickEditTooltip();
@@ -66,14 +66,29 @@ describe('message page suite', () => {
     cy.fixture('const').then((data) => {
       const login = new LoginPage();
       login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName, data.msgPassword);
+      login.loginValid(data.msgUserName,data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyLandingUrl();
+      msgObj.VerifyOpenChannelUrl();
       msgObj.sendMessage();
       msgObj.hoverSendMessageTxt();
       msgObj.hoverAndClickReactTooltip();
       msgObj.selectEmojiFromtheContainer();
       msgObj.verifyReactMessage();
+    })
+  })
+
+  it('Post a hyperlink in channel', () => {
+    cy.fixture('const').then((data) => {
+      const login = new LoginPage();
+      login.navigate(data.icGenesivLoginUrl);
+      login.loginValid(data.msgUserName,data.msgPassword);
+      const msgObj = new MessagePage();
+      msgObj.VerifyOpenChannelUrl();
+      msgObj.sendYoutubeMessage();
+      msgObj.verifyYoutubeText();
+      msgObj.verifyYoutubeAtrributes();
+      msgObj.hoverTubelinkAndClick();
+      msgObj.verifyNewtabTitle();
     })
   })
 })
