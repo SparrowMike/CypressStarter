@@ -5,6 +5,7 @@ export class MessagePage {
     replyToolTip = "//div[@data-tooltip = 'Reply']"
     editToolTip = "//div[@data-tooltip = 'Edit']"
     reactToolTip = "//div[@data-tooltip = 'React to this message']"
+    postToOtherChannelsToolTip = "//div[@data-tooltip = 'Post to other channels']"
     deleteButtom = "//button[@class='ui approve button delete-approve']"
     replyHeader = '.medium ng-binding'
     reactImage = "//img[@data-src='/img/emojis/1f600.png']"
@@ -14,6 +15,9 @@ export class MessagePage {
     headerYoutubeLink = "//h3[contains(text(),'YouTube')]"
     description = '.description'
     youtubeImage = "//img[@src='https://www.youtube.com/img/desktop/yt_1200.png']"
+    announcementTag ="//div[@class='sub header ng-binding'][normalize-space()='Announcement']"
+    postButton ="//button[@class='ui green approve button blast']"
+    announcementChannelId ="//div[@id='channel_63a041aaf29f4030b7e66b24']"
 
     // String Constant
     Path = '/Testing-server/Basic';
@@ -106,6 +110,13 @@ export class MessagePage {
             $el.click();
         })
     }
+    
+    hoverAndClickPostToOtherChannelToolTip() {
+        cy.log(cy.xpath(this.postToOtherChannelsToolTip).its('length'))
+        cy.xpath(this.postToOtherChannelsToolTip).each(($el) => {
+            $el.click();
+        })
+    }
 
     hoverAndClickReplyTooltip() {
         cy.log(cy.xpath(this.replyToolTip).its('length'))
@@ -130,6 +141,18 @@ export class MessagePage {
 
     clickDeletePopButton() {
         cy.xpath(this.deleteButtom).click();
+    }
+
+    goToAnnoucementChannel(){
+        cy.xpath(this.announcementChannelId).click();
+    }
+
+    ClickPostButton(){
+        cy.xpath(this.postButton).click();
+    }
+
+    SelectCypressServerAnnouncement(){
+        cy.xpath(this.announcementTag).should('be.visible').click();
     }
 
     selectEmojiFromtheContainer() {
