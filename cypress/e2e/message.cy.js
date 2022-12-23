@@ -91,4 +91,20 @@ describe('message page suite', () => {
       msgObj.verifyNewtabTitle();
     })
   })
+
+  it('Editing a hyperlink in channel', () => {
+    cy.fixture('const').then((data) => {
+      const login = new LoginPage();
+      login.navigate(data.icGenesivLoginUrl);
+      login.loginValid(data.msgUserName,data.msgPassword);
+      const msgObj = new MessagePage();
+      msgObj.VerifyOpenChannelUrl();
+      msgObj.sendYoutubeMessage();
+      msgObj.verifyYoutubeText();
+      msgObj.verifyYoutubeAtrributes();
+      msgObj.hoverTubelinkAndEdit();
+      msgObj.sendEditYoutubeMessage();
+      msgObj.verifyEditedYoutubeAtrributesAndNewTabTitle();
+    })
+  })
 })

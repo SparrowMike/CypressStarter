@@ -10,6 +10,7 @@ export class MessagePage {
     reactImage = "//img[@data-src='/img/emojis/1f600.png']"
     reactImageXpathSrc = "//img[@src='/img/emojis/1f600.png']"
     youtubeLink = "//a[@href='http://www.youtube.com']"
+    editedYoutubeLink ="//a[contains(text(),'https://youtu.be/gZN3b9irMQ0')]"
     headerYoutubeLink = "//h3[contains(text(),'YouTube')]"
     description = '.description'
     youtubeImage = "//img[@src='https://www.youtube.com/img/desktop/yt_1200.png']"
@@ -27,6 +28,7 @@ export class MessagePage {
     replyTxt = this.cyPressReplytxt + this.now
     sendTxt = this.cyPressAutomationtxt + this.now
     editTxt = this.cyPressEdittxt + this.now
+    editHyperlinkTxt = "https://youtu.be/gZN3b9irMQ0";
     sendYoutubetext = "www.youtube.com";
 
 
@@ -63,6 +65,10 @@ export class MessagePage {
         cy.get(this.msgDiv).clear().should('be.visible').clear().type(this.editTxt + '{enter}');
     }
 
+    sendEditYoutubeMessage() {
+        cy.get(this.msgDiv).should('be.visible').clear().wait(5000).type(this.editHyperlinkTxt + '{enter}');
+    }
+
     hoverSendMessageTxt() {
         const lastMessageString = this.cyPressAutomationtxt + this.now;
         cy.log(lastMessageString)
@@ -78,6 +84,21 @@ export class MessagePage {
         cy.xpath(this.youtubeLink).last().click();
     }
 
+    hoverTubelinkAndEdit() {
+        cy.xpath(this.youtubeLink).last().realHover('mouse');
+        cy.xpath(this.youtubeLink).last().should('have.attr', 'target')
+        cy.log(cy.xpath(this.editToolTip).its('length'))
+        cy.xpath(this.editToolTip).each(($el) => {
+            $el.click();
+        })
+    }
+
+    verifyEditedYoutubeAtrributesAndNewTabTitle() {
+        cy.xpath(this.editedYoutubeLink).last().should('exist')
+        cy.log(cy.xpath(this.editedYoutubeLink).its('length'))
+        cy.xpath(this.editedYoutubeLink).last().should('have.attr','href').should('contain', "https://youtu.be/gZN3b9irMQ0")
+        cy.xpath(this.editedYoutubeLink).last().realHover('mouse').click({multiple:true});
+    }
 
     hoverAndClickDeleteTooltip() {
         cy.log(cy.xpath(this.deleteToolTip).its('length'))
