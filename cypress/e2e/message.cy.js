@@ -3,15 +3,24 @@ import { LoginPage } from "../PageObjects/LoginPage"
 import MessagePage from "../PageObjects/MessagePage"
 
 
+
 describe('message page suite', () => {
+  beforeEach(() => {
+    cy.fixture('const').then((data) => {
+    const login = new LoginPage();
+    login.navigate(data.icGenesivLoginUrl);
+    login.loginValid(data.msgUserName, data.msgPassword);
+    const msgObj = new MessagePage();
+    msgObj.VerifyOpenChannelUrl();
+    cy.on('uncaught:exception', (err, runnable) => {
+    return false;    
+    });
+  })
+})
 
   it('Message sent successfully', () => {
     cy.fixture('const').then((data) => {
-      const login = new LoginPage();
-      login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName, data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyOpenChannelUrl();
       msgObj.sendMessage();
       msgObj.verifySendMessageTxt();
     })
@@ -19,11 +28,7 @@ describe('message page suite', () => {
 
   it('Message Delete Successfully', () => {
     cy.fixture('const').then((data) => {
-      const login = new LoginPage();
-      login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName,data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyOpenChannelUrl();
       msgObj.sendMessage();
       msgObj.hoverSendMessageTxt();
       msgObj.hoverAndClickDeleteTooltip();
@@ -34,11 +39,7 @@ describe('message page suite', () => {
 
   it('Message reply successfully', () => {
     cy.fixture('const').then((data) => {
-      const login = new LoginPage();
-      login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName,data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyOpenChannelUrl();
       msgObj.sendMessage();
       msgObj.hoverSendMessageTxt();
       msgObj.hoverAndClickReplyTooltip();
@@ -49,11 +50,7 @@ describe('message page suite', () => {
 
   it('Message edit successfully', () => {
     cy.fixture('const').then((data) => {
-      const login = new LoginPage();
-      login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName,data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyOpenChannelUrl();
       msgObj.sendMessage();
       msgObj.hoverSendMessageTxt();
       msgObj.hoverAndClickEditTooltip();
@@ -64,11 +61,7 @@ describe('message page suite', () => {
 
   it('Message react successfully', () => {
     cy.fixture('const').then((data) => {
-      const login = new LoginPage();
-      login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName,data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyOpenChannelUrl();
       msgObj.sendMessage();
       msgObj.hoverSendMessageTxt();
       msgObj.hoverAndClickReactTooltip();
@@ -79,11 +72,7 @@ describe('message page suite', () => {
 
   it('Post a hyperlink in channel', () => {
     cy.fixture('const').then((data) => {
-      const login = new LoginPage();
-      login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName,data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyOpenChannelUrl();
       msgObj.sendYoutubeMessage();
       msgObj.verifyYoutubeText();
       msgObj.verifyYoutubeAtrributes();
@@ -94,11 +83,7 @@ describe('message page suite', () => {
 
   it('Editing a hyperlink in channel', () => {
     cy.fixture('const').then((data) => {
-      const login = new LoginPage();
-      login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName,data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyOpenChannelUrl();
       msgObj.sendYoutubeMessage();
       msgObj.verifyYoutubeText();
       msgObj.verifyYoutubeAtrributes();
@@ -108,13 +93,9 @@ describe('message page suite', () => {
     })
   })
 
-  it('Post to other channels Without Login', () => {
+  it('Post to other channels', () => {
     cy.fixture('const').then((data) => {
-      const login = new LoginPage();
-      login.navigate(data.icGenesivLoginUrl);
-      login.loginValid(data.msgUserName,data.msgPassword);
       const msgObj = new MessagePage();
-      msgObj.VerifyOpenChannelUrl();
       msgObj.sendMessage();
       msgObj.hoverSendMessageTxt();
       msgObj.hoverAndClickPostToOtherChannelToolTip();
