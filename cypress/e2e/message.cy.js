@@ -97,12 +97,30 @@ describe('message page suite', () => {
     cy.fixture('const').then((data) => {
       const msgObj = new MessagePage();
       msgObj.sendMessage();
+      msgObj.verifySendMessageTxt();
       msgObj.hoverSendMessageTxt();
       msgObj.hoverAndClickPostToOtherChannelToolTip();
       msgObj.SelectCypressServerAnnouncement();
       msgObj.ClickPostButton();
       msgObj.goToAnnoucementChannel();
       msgObj.verifySendMessageTxt();     
+    })
+  })
+
+  it('Post to other channels  with another user login', () => {
+    cy.fixture('const').then((data) => {
+      const msgObj = new MessagePage();
+      msgObj.sendMessage();
+      msgObj.verifySendMessageTxt();
+      msgObj.hoverSendMessageTxt();
+      msgObj.hoverAndClickPostToOtherChannelToolTip();
+      msgObj.SelectCypressServerChaneel1();
+      msgObj.ClickPostButton();
+      msgObj.logout();
+      const login = new LoginPage();
+      login.loginValid(data.msgUserName1, data.msgPassword);
+      msgObj.goToChannel1();
+      msgObj.verifySendMessageTxt();
     })
   })
 })

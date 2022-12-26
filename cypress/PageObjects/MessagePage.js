@@ -16,8 +16,13 @@ export class MessagePage {
     description = '.description'
     youtubeImage = "//img[@src='https://www.youtube.com/img/desktop/yt_1200.png']"
     announcementTag ="//div[@class='sub header ng-binding'][normalize-space()='Announcement']"
+    channel1Tag ="//div[@class='sub header ng-binding'][normalize-space()='Channel 1']"
     postButton ="//button[@class='ui green approve button blast']"
     announcementChannelId ="//div[@id='channel_63a041aaf29f4030b7e66b24']"
+    channel1Id="//div[@id='channel_63a04140f29f4030b7e66aff']"
+    profileImg = "//a[@data-tooltip = 'Profile']"
+    logoutIcon ="//div[@class='content redTomato padleft5']"
+    logoutApprove ="//button[@class='ui approve button']"
 
     // String Constant
     Path = '/Testing-server/Basic';
@@ -111,6 +116,12 @@ export class MessagePage {
         })
     }
     
+    logout(){
+        cy.xpath(this.profileImg).should('be.visible').click();
+        cy.xpath(this.logoutIcon).should('be.visible').click();
+        cy.xpath(this.logoutApprove).should('be.visible').last().click();
+    }
+
     hoverAndClickPostToOtherChannelToolTip() {
         cy.log(cy.xpath(this.postToOtherChannelsToolTip).its('length'))
         cy.xpath(this.postToOtherChannelsToolTip).each(($el) => {
@@ -143,6 +154,10 @@ export class MessagePage {
         cy.xpath(this.deleteButtom).click();
     }
 
+    goToChannel1(){
+        cy.xpath(this.channel1Id).click();
+    }
+
     goToAnnoucementChannel(){
         cy.xpath(this.announcementChannelId).click();
     }
@@ -153,6 +168,10 @@ export class MessagePage {
 
     SelectCypressServerAnnouncement(){
         cy.xpath(this.announcementTag).should('be.visible').click();
+    }
+
+    SelectCypressServerChaneel1(){
+        cy.xpath(this.channel1Tag).should('be.visible').click();
     }
 
     selectEmojiFromtheContainer() {
