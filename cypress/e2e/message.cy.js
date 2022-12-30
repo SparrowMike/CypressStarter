@@ -93,6 +93,18 @@ describe('message page suite', () => {
     })
   })
 
+  it('Message Share Successfully', () => {
+    cy.fixture('const').then((data) => {
+      const msgObj = new MessagePage();
+      msgObj.sendMessage();
+      msgObj.verifySendMessageTxt();
+      msgObj.hoverSendMessageTxt();
+      msgObj.shareMessageToChannel1();
+      msgObj.goToChannel1();
+      msgObj.verifySharemessageTxt();
+    })
+  })
+
   it('Post to other channels', () => {
     cy.fixture('const').then((data) => {
       const msgObj = new MessagePage();
@@ -119,6 +131,24 @@ describe('message page suite', () => {
       msgObj.logout();
       const login = new LoginPage();
       login.loginValid(data.msgUserName1, data.msgPassword);
+      msgObj.goToChannel1();
+      msgObj.verifySendMessageTxt();
+    })
+  })
+
+  it('Dots for post to other channels', () => {
+    cy.fixture('const').then((data) => {
+      const msgObj = new MessagePage();
+      msgObj.sendMessage();
+      msgObj.verifySendMessageTxt();
+      msgObj.hoverSendMessageTxt();
+      msgObj.hoverAndClickPostToOtherChannelToolTip();
+      msgObj.SelectCypressServerChaneel1();
+      msgObj.ClickPostButton();
+      msgObj.logout();
+      const login = new LoginPage();
+      login.loginValid(data.msgUserName1, data.msgPassword);
+      msgObj.verifyNewCommentDotonChannel1();
       msgObj.goToChannel1();
       msgObj.verifySendMessageTxt();
     })
