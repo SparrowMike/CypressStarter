@@ -11,6 +11,8 @@
   "passWordInsecureEmailId": "zosyleho@ema-sofia.eu",
   "registerUserName": "usercypresstest",
   "inSecureUserName": "usercypresstest1",
+  "cytest2Username": "cypresstest2",
+  "cytest2password": "Cypresstest2!",
   "cnameLoginUserName": "cypresscnamelogin",
   "msgUserName": "usercypresstest",
   "comsicUsername":"Cosmix",

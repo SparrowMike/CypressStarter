@@ -44,4 +44,15 @@ describe('landing page suite', () => {
     })
   })
 
+  it('Login Redirect Existing User', () => {
+    cy.fixture('const').then((data) => {
+      const login = new LoginPage();
+      login.navigate(data.icGenesivLoginUrl);
+      login.setUserName(data.cytest2Username);
+      login.setPassword(data.cytest2password);
+      login.clickLogin();
+      login.verifyLastVisitedServerGeneSivOfficial();
+      login.verifyWelcomeLoadServer();
+    })
+  })
 })

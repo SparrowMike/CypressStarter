@@ -8,6 +8,8 @@ export class LoginPage {
     checkBoxEmail = "//input[@id='Email' and @type='checkbox']";
     header = '.header';
     divVipHeader = "//span[@class='ng-binding ng-scope']";
+    divOfficalGenesivServer = "//span[@class='ng-binding ng-scope'][normalize-space()='Hey everyone, welcome to the Official Genesiv server!']"
+    channelSubHeader = "//div[@class='sub header _channelName']"
 
     // String Constant
     Login = "Login";
@@ -15,6 +17,7 @@ export class LoginPage {
     WhatWouldLileToDoToday = "'What would you like to do today?"
     WelcomeToVipRoom = "Welcome to the IC Markets VIP Room!"
     url = "https://ic.genesiv.com/app/IC-VIP-Room/Welcome!"
+    Welcome = 'Welcome!'
 
     setUserName(userName) {
         const field = cy.get(this.txtUserName).clear()
@@ -52,6 +55,14 @@ export class LoginPage {
     verifyLandingUrlAndVipRoomText() {
         cy.get('.content:nth-child(2) > .white > .ng-binding').contains(this.WelcomeToVipRoom);
         cy.url().should('be.visible').should('eq', this.url);
+    }
+
+    verifyLastVisitedServerGeneSivOfficial(){
+        cy.xpath(this.divOfficalGenesivServer).should('be.visible').should('exist')
+    }
+
+    verifyWelcomeLoadServer(){
+        cy.xpath(this.channelSubHeader).should('contain',this.Welcome)
     }
 
 
