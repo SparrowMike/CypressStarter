@@ -5,7 +5,7 @@ import SearchPage from "../PageObjects/SearchPage"
 
 
 
-describe('Personal DM suite', () => {
+describe('search suite', () => {
 
   it('Using #hashtag search', () => {
     cy.fixture('const').then((data) => {
