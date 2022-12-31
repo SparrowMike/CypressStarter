@@ -13,13 +13,21 @@ describe('landing page suite', () => {
   })
 
   it('Verify CNAME Disclaimer', () => {
-    const ln = new LoginPage();
-    ln.verifyServerAndDisclaimersText();
+    cy.fixture('const').then((data) => {
+      const ln = new LoginPage();
+      ln.navigate(data.icGenesivUrl);
+      ln.loginValid(data.cnameLoginUserName, data.cnameLoginPassword)
+      ln.verifyServerAndDisclaimersText();
+    })
   })
 
   it('Verify CNAME Disclaimer GDPR', () => {
-    const ln = new LoginPage();
-    ln.verifyCheckBoxChecked();
+    cy.fixture('const').then((data) => {
+      const ln = new LoginPage();
+      ln.navigate(data.icGenesivUrl);
+      ln.loginValid(data.cnameLoginUserName, data.cnameLoginPassword)
+      ln.verifyCheckBoxChecked();
+    })
   })
 
   it('Login First Time', () => {

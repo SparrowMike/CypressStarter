@@ -3,6 +3,7 @@ export class LoginPage {
     textPassWord = "#password";
     btnLogin = ".submit";
     clsPopUp = ".field ng-scope";
+    spanInnnerText = "//span[@class='ng-binding ng-scope']"
     checkBoxFirstName = "//input[@id='First Name' and @type='checkbox']";
     checkBoxLastName = "//input[@id='Last Name' and @type='checkbox']";
     checkBoxEmail = "//input[@id='Email' and @type='checkbox']";
@@ -16,11 +17,11 @@ export class LoginPage {
     ServerAndDisclaimer = "Server Rules and Disclaimers"
     WhatWouldLileToDoToday = "'What would you like to do today?"
     WelcomeToVipRoom = "Welcome to the IC Markets VIP Room!"
-    url = "https://ic.genesiv.com/app/IC-VIP-Room/Welcome!"
+    url = "/app/IC-VIP-Room/Welcome!"
     Welcome = 'Welcome!'
 
     setUserName(userName) {
-        const field = cy.get(this.txtUserName).clear()
+        const field = cy.get(this.txtUserName)
         field.should('be.visible').clear().type(userName)
         return this
     }
@@ -53,8 +54,8 @@ export class LoginPage {
     }
 
     verifyLandingUrlAndVipRoomText() {
-        cy.get('.content:nth-child(2) > .white > .ng-binding').contains(this.WelcomeToVipRoom);
-        cy.url().should('be.visible').should('eq', this.url);
+        cy.xpath(this.spanInnnerText).contains(this.WelcomeToVipRoom);
+        cy.url().should('contain', this.url);
     }
 
     verifyLastVisitedServerGeneSivOfficial(){
