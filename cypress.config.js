@@ -13,7 +13,7 @@ module.exports = defineConfig({
   // Command timeout overridden for E2E tests
   e2e: {
     // baseUrl: 'http://localhost:1337',
-    //baseUrl: 'https://tradingroom.sg',
+    // baseUrl: 'https://tradingroom.sg',
     // baseUrl: 'https://genesiv.com',    
     defaultCommandTimeout: 60000,
     retries : 2
